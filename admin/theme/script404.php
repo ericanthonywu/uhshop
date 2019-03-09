@@ -1,0 +1,2 @@
+<script src="<?=$metronic5_url?>default/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+<script src="<?=$metronic5_url?>default/demo/default/base/scripts.bundle.js" type="text/javascript"></script>

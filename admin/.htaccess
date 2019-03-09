@@ -1,0 +1,132 @@
+<ifModule mod_deflate.c>
+  <filesMatch ".(css|js|html|php)$">
+    SetOutputFilter DEFLATE
+  </filesMatch>
+</ifModule>
+<FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|js|pdf)$">
+  Header set Cache-Control "max-age=2592000"
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+ErrorDocument 404 http://localhost/uh_shop/admin/not-found
+RewriteRule ^not-found$ inventory.php?halaman=not-found [L]
+RewriteRule ^welcome$ inventory.php?halaman=welcome [L]
+
+RewriteRule ^dashboard$ inventory.php?halaman=dashboard [L]
+RewriteRule ^dashboard/([^/\.]+)/?$ inventory.php?halaman=dashboard&hal=$1 [L]
+RewriteRule ^dashboard/([^/\.]+)/([^/\.]+)/?$ inventory.php?halaman=dashboard&hal=$1&data=$2 [L]
+RewriteRule ^dashboard/([^/\.]+)/([^/\.]+)/([^/\.]+)/?$ inventory.php?halaman=dashboard&hal=$1&dari=$2&sampai=$3 [L]
+
+#DATA BARANG
+RewriteRule ^barang$ inventory.php?barang=barang [L]
+RewriteRule ^barang/([^/\.]+)/?$ inventory.php?barang=barang&hal=$1 [L]
+RewriteRule ^barang/([^/\.]+)/([^/\.]+)/?$ inventory.php?barang=barang&hal=$1&kode=$2 [L]
+
+#DATA KATEGORI BARANG
+RewriteRule ^kategori-barang$ inventory.php?barang=kategori-barang [L]
+RewriteRule ^kategori-barang/([^/\.]+)/?$ inventory.php?barang=kategori-barang&hal=$1 [L]
+RewriteRule ^kategori-barang/([^/\.]+)/([^/\.]+)/?$ inventory.php?barang=kategori-barang&hal=$1&kode=$2 [L]
+
+#DATA PELANGGAN
+RewriteRule ^pelanggan$ inventory.php?pelanggan=pelanggan [L]
+RewriteRule ^pelanggan/([^/\.]+)/?$ inventory.php?pelanggan=pelanggan&hal=$1 [L]
+RewriteRule ^pelanggan/([^/\.]+)/([^/\.]+)/?$ inventory.php?pelanggan=pelanggan&hal=$1&kode=$2 [L]
+
+#DATA SUPPLIER
+RewriteRule ^supplier$ inventory.php?supplier=supplier [L]
+RewriteRule ^supplier/([^/\.]+)/?$ inventory.php?supplier=supplier&hal=$1 [L]
+RewriteRule ^supplier/([^/\.]+)/([^/\.]+)/?$ inventory.php?supplier=supplier&hal=$1&kode=$2 [L]
+
+#DATA ORDER
+RewriteRule ^order$ inventory.php?transaksi=order [L]
+RewriteRule ^order/([^/\.]+)/?$ inventory.php?transaksi=order&hal=$1 [L]
+RewriteRule ^order/([^/\.]+)/([^/\.]+)/?$ inventory.php?transaksi=order&hal=$1&kode=$2 [L]
+
+#DATA PEMBELIAN
+RewriteRule ^pembelian$ inventory.php?transaksi=pembelian [L]
+RewriteRule ^pembelian/([^/\.]+)/?$ inventory.php?transaksi=pembelian&hal=$1 [L]
+RewriteRule ^pembelian/([^/\.]+)/([^/\.]+)/?$ inventory.php?transaksi=pembelian&hal=$1&kode=$2 [L]
+
+#DATA PENJUALAN
+RewriteRule ^penjualan$ inventory.php?transaksi=penjualan [L]
+RewriteRule ^penjualan/([^/\.]+)/?$ inventory.php?transaksi=penjualan&hal=$1 [L]
+RewriteRule ^penjualan/([^/\.]+)/([^/\.]+)/?$ inventory.php?transaksi=penjualan&hal=$1&kode=$2 [L]
+
+#LAPORAN BARANG
+RewriteRule ^laporan-barang$ inventory.php?laporan=laporan-barang [L]
+RewriteRule ^laporan-barang/([^/\.]+)/?$ inventory.php?laporan=laporan-barang&hal=$1 [L]
+RewriteRule ^laporan-barang/([^/\.]+)/([^/\.]+)/?$ inventory.php?laporan=laporan-barang&hal=$1&dari=$2 [L]
+RewriteRule ^laporan-barang/([^/\.]+)/([^/\.]+)/([^/\.]+)/?$ inventory.php?laporan=laporan-barang&hal=$1&dari=$2&sampai=$3 [L]
+
+#LAPORAN PEMBELIAN
+RewriteRule ^laporan-pembelian$ inventory.php?laporan=laporan-pembelian [L]
+RewriteRule ^laporan-pembelian/([^/\.]+)/?$ inventory.php?laporan=laporan-pembelian&hal=$1 [L]
+RewriteRule ^laporan-pembelian/([^/\.]+)/([^/\.]+)/?$ inventory.php?laporan=laporan-pembelian&hal=$1&dari=$2 [L]
+RewriteRule ^laporan-pembelian/([^/\.]+)/([^/\.]+)/([^/\.]+)/?$ inventory.php?laporan=laporan-pembelian&hal=$1&dari=$2&sampai=$3 [L]
+
+#LAPORAN PENJUALAN
+RewriteRule ^laporan-penjualan$ inventory.php?laporan=laporan-penjualan [L]
+RewriteRule ^laporan-penjualan/([^/\.]+)/?$ inventory.php?laporan=laporan-penjualan&hal=$1 [L]
+RewriteRule ^laporan-penjualan/([^/\.]+)/([^/\.]+)/?$ inventory.php?laporan=laporan-penjualan&hal=$1&dari=$2 [L]
+RewriteRule ^laporan-penjualan/([^/\.]+)/([^/\.]+)/([^/\.]+)/?$ inventory.php?laporan=laporan-penjualan&hal=$1&dari=$2&sampai=$3 [L]
+
+#LAPORAN KEUNTUNGAN
+RewriteRule ^laporan-keuntungan$ inventory.php?laporan=laporan-keuntungan [L]
+RewriteRule ^laporan-keuntungan/([^/\.]+)/?$ inventory.php?laporan=laporan-keuntungan&hal=$1 [L]
+RewriteRule ^laporan-keuntungan/([^/\.]+)/([^/\.]+)/?$ inventory.php?laporan=laporan-keuntungan&hal=$1&dari=$2 [L]
+RewriteRule ^laporan-keuntungan/([^/\.]+)/([^/\.]+)/([^/\.]+)/?$ inventory.php?laporan=laporan-keuntungan&hal=$1&dari=$2&sampai=$3 [L]
+
+RewriteRule ^auth$ inventory.php?session=auth [L]
+RewriteRule ^signout$ inventory.php?session=signout [L]
+RewriteRule ^profile$ inventory.php?session=profile [L]
+
+#DATA USER
+RewriteRule ^user$ inventory.php?session=user [L]
+RewriteRule ^user/([^/\.]+)/?$ inventory.php?session=user&hal=$1 [L]
+RewriteRule ^user/([^/\.]+)/([^/\.]+)/?$ inventory.php?session=user&hal=$1&kode=$2 [L]
+
+#DATA PENGATURAN
+RewriteRule ^aplikasi$ inventory.php?pengaturan=aplikasi [L]
+RewriteRule ^aplikasi/([^/\.]+)/?$ inventory.php?pengaturan=aplikasi&hal=$1 [L]
+RewriteRule ^aplikasi/([^/\.]+)/([^/\.]+)/?$ inventory.php?pengaturan=aplikasi&hal=$1&kode=$2 [L]
+
+RewriteRule ^slider$ inventory.php?pengaturan=slider [L]
+RewriteRule ^slider/([^/\.]+)/?$ inventory.php?pengaturan=slider&hal=$1 [L]
+RewriteRule ^slider/([^/\.]+)/([^/\.]+)/?$ inventory.php?pengaturan=slider&hal=$1&kode=$2 [L]
+
+RewriteRule ^konten$ inventory.php?pengaturan=konten [L]
+RewriteRule ^konten/([^/\.]+)/?$ inventory.php?pengaturan=konten&hal=$1 [L]
+RewriteRule ^konten/([^/\.]+)/([^/\.]+)/?$ inventory.php?pengaturan=konten&hal=$1&kode=$2 [L]
+
+RewriteRule ^contact$ inventory.php?pengaturan=contact [L]
+RewriteRule ^contact/([^/\.]+)/?$ inventory.php?pengaturan=contact&hal=$1 [L]
+RewriteRule ^contact/([^/\.]+)/([^/\.]+)/?$ inventory.php?pengaturan=contact&hal=$1&kode=$2 [L]
+
+RewriteRule ^perusahaan$ inventory.php?pengaturan=perusahaan [L]
+RewriteRule ^perusahaan/([^/\.]+)/?$ inventory.php?pengaturan=perusahaan&hal=$1 [L]
+RewriteRule ^perusahaan/([^/\.]+)/([^/\.]+)/?$ inventory.php?pengaturan=perusahaan&hal=$1&kode=$2 [L]
+
+RewriteRule ^sosial-media$ inventory.php?pengaturan=sosial-media [L]
+RewriteRule ^sosial-media/([^/\.]+)/?$ inventory.php?pengaturan=sosial-media&hal=$1 [L]
+RewriteRule ^sosial-media/([^/\.]+)/([^/\.]+)/?$ inventory.php?pengaturan=sosial-media&hal=$1&kode=$2 [L]
+
+RewriteRule ^how-to-order$ inventory.php?pengaturan=how-to-order [L]
+RewriteRule ^how-to-order/([^/\.]+)/?$ inventory.php?pengaturan=how-to-order&hal=$1 [L]
+RewriteRule ^how-to-order/([^/\.]+)/([^/\.]+)/?$ inventory.php?pengaturan=how-to-order&hal=$1&kode=$2 [L]
+
+RewriteRule ^testimonial$ inventory.php?pengaturan=testimonial [L]
+RewriteRule ^testimonial/([^/\.]+)/?$ inventory.php?pengaturan=testimonial&hal=$1 [L]
+RewriteRule ^testimonial/([^/\.]+)/([^/\.]+)/?$ inventory.php?pengaturan=testimonial&hal=$1&kode=$2 [L]
+
+</IfModule>
+# secure htaccess file
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+
+#prevent from browse file.
+Options All -Indexes

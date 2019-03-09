@@ -1,0 +1,44 @@
+<ifModule mod_deflate.c>
+  <filesMatch ".(css|js|html|php)$">
+    SetOutputFilter DEFLATE
+  </filesMatch>
+</ifModule>
+<FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|js|pdf)$">
+  Header set Cache-Control "max-age=2592000"
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+ErrorDocument 404 http://localhost/uh_shop/not-found
+
+RewriteRule ^home$ uh_shop.php?halaman=home [L]
+RewriteRule ^about$ uh_shop.php?halaman=about [L]
+RewriteRule ^contact$ uh_shop.php?halaman=contact [L]
+RewriteRule ^testimonial$ uh_shop.php?halaman=testimonial [L]
+RewriteRule ^how-to-order$ uh_shop.php?halaman=how-to-order [L]
+RewriteRule ^product$ uh_shop.php?halaman=product [L]
+RewriteRule ^product/([^/\.]+)/?$ uh_shop.php?halaman=product&hal=$1 [L]
+RewriteRule ^product/([^/\.]+)/([^/\.]+)/?$ uh_shop.php?halaman=product&hal=$1&keyword=$2 [L]
+
+
+RewriteRule ^auth$ uh_shop.php?session=auth [L]
+RewriteRule ^auth/([^/\.]+)/?$ uh_shop.php?session=auth&hal=$1 [L]
+RewriteRule ^auth/([^/\.]+)/([^/\.]+)/?$ uh_shop.php?session=auth&hal=$1&keyword=$2 [L]
+
+RewriteRule ^checkout$ uh_shop.php?session=cart [L]
+
+RewriteRule ^signout$ uh_shop.php?session=signout [L]
+
+RewriteRule ^not-found$ uh_shop.php?halaman=not-found [L]
+
+</IfModule>
+# secure htaccess file
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+
+#prevent from browse file.
+Options All -Indexes

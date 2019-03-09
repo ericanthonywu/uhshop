@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+#ErrorDocument 404 http://localhost/inventory/not-found
+
+</IfModule>
+# secure htaccess file
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+
+#prevent from browse file.
+Options All -Indexes
+#####################
